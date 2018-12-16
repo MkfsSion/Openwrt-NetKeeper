@@ -2,9 +2,9 @@
 #This is a demo for MTK7620A
 
 #TODO:填写解压的Toolchain中bin与include所在的目录（根目录）,某些奇葩可能用的是glibc，这里可能要替换LIBC
-LOCATION=../../OpenWrt-Toolchain-ramips-for-mipsel_24kec+dsp-gcc-4.8-linaro_uClibc-0.9.33.2/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2
+LOCATION=../../toolchain-aarch64_cortex-a53_gcc-7.3.0_musl
 #TODO:请注意不同型号(mips/mipsel)路由器此处gcc文件名可能略有不同
-CC=$(LOCATION)/bin/mipsel-openwrt-linux-gcc
+CC=$(LOCATION)/bin/aarch64-openwrt-linux-gcc
 #TODO:可能需要修改pppd的版本，取决于路由器的/usr/lib/pppd/，目前主流的14.09是2.4.7
 PPPD_VER=2.4.7
 CFLAGS=-Os -Werror -I$(LOCATION)/include -fPIC -DPPPOE_VER='"${PPPD_VER}"'
