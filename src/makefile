@@ -21,6 +21,7 @@ CFLAGS=-Os -Werror -I$(LOCATION)/include -fPIC -DPPPOE_VER='"${PPPD_VER}"'
 # ShanDong Mobile : shandongmobile13
 # Shanxi Yixun : sh_xi@xiaoyuan01
 # GanSu Telecom 3.7.1 : xiaoyuanyixun001
+# NanChangV32: jiangxi4.0
 
 ##  The following radius has been deprecated due to update. No more used.
 #
@@ -28,7 +29,6 @@ CFLAGS=-Os -Werror -I$(LOCATION)/include -fPIC -DPPPOE_VER='"${PPPD_VER}"'
 # ShanDong Telecom : shdOx!a0yuan01lz  (For 3.7.3 October 27th Version)
 # NanChangV12~V17: radius
 # NanChangV18~V29: nanchang3.0
-# NanChangV32: jiangxi4.0
 #
 
 # TODO: Change PREFIX1
@@ -36,7 +36,7 @@ CFLAGS=-Os -Werror -I$(LOCATION)/include -fPIC -DPPPOE_VER='"${PPPD_VER}"'
 # NanChangV32: '1'
 # Others: '\n'
 
-all:chongqing_sxplugin chongqing0094_sxplugin hubei_sxplugin zhejiang_xiaoyuan_sxplugin xinjiang_sxplugin qinghai_sxplugin shandongmobile_sxplugin shandongmobile_4_9_sxplugin hebei_sxplugin shanxi_yixun_sxplugin gansu_telecom_sxplugin zhejiang_qiye_sxplugin hainan_sxplugin
+all:chongqing_sxplugin chongqing0094_sxplugin hubei_sxplugin zhejiang_xiaoyuan_sxplugin xinjiang_sxplugin qinghai_sxplugin shandongmobile_sxplugin shandongmobile_4_9_sxplugin hebei_sxplugin shanxi_yixun_sxplugin gansu_telecom_sxplugin zhejiang_qiye_sxplugin hainan_sxplugin nanchang_sxplugin
 	@find *.so
 	@echo "拨号组件编译成功，注意修改confnetwork.sh的sxplugin名称为本省的名称，以及拨号帐号与密码!，然后运行make upload"
 
@@ -48,6 +48,9 @@ upload:
 	scp confnetwork.sh root@192.168.1.1:/tmp/
 	@echo "正在登录路由器，请在输入路由器ssh密码后，运行sh /tmp/confnetwork.sh"
 	ssh root@192.168.1.1
+
+nanchang_sxplugin:
+	@$(CC) $(CFLAGS) sxplugin.c -DRADIUS='"jiangxi4.0"' -DPREFIX1="'1'" -shared -o $@.so
 
 chongqing0094_sxplugin:
 	@$(CC) $(CFLAGS) sxplugin.c -DRADIUS='"xianxinli1radius"'  -DPREFIX1="'\n'" -shared -o $@.so
